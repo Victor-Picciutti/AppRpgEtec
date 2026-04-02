@@ -60,6 +60,12 @@ namespace AppRpgEtec.ViewModels.Usuarios
         {
             try
             {
+
+                if(string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Senha))
+                {
+                    throw new Exception("Digite usuario e senha");
+                }
+
                 Usuario u = new Usuario();
                 u.Username = Login;
                 u.PasswordString = Senha;
@@ -105,6 +111,7 @@ namespace AppRpgEtec.ViewModels.Usuarios
                     await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
 
                     await Application.Current.MainPage.Navigation.PopAsync();
+
                 }
             }
             catch (Exception ex)
