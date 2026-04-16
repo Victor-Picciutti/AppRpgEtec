@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AppRpgEtec.Views.Usuarios;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AppRpgEtec
 {
@@ -7,7 +8,6 @@ namespace AppRpgEtec
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new Views.Usuarios.LoginView());
-        }
+            MainPage = new NavigationPage(new Views.Usuarios.LoginView());        }
     }
 }

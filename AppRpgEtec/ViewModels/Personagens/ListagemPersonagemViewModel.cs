@@ -1,9 +1,11 @@
 ﻿using AppRpgEtec.Models;
 using AppRpgEtec.Services.Personagens;
+using AppRpgEtec.Views.Armas;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace AppRpgEtec.ViewModels.Personagens
 {
@@ -11,6 +13,7 @@ namespace AppRpgEtec.ViewModels.Personagens
     {
         private PersonagemService pService;
         public ObservableCollection<Personagem> Personagens { get; set; }
+
         public ListagemPersonagemViewModel() 
         {
             string token = Preferences.Get("UsuarioToken", string.Empty);
@@ -20,17 +23,24 @@ namespace AppRpgEtec.ViewModels.Personagens
             _ = ObterPersonagens();
         }
 
+
+
         public async Task ObterPersonagens()
         {
-            try //Junto com o cacth evitara que erros fechem o aplicativo
+            try
             {
-                Personagens = await pService.GetPersonagensAsync();
-                OnPropertyChanged(nameof(Personagens));//Informara a View que houve carregamento
+                var lista = await pService.GetPersonagensAsync();
+
+                Personagens.Clear();
+
+                foreach (var item in lista)
+                {
+                    Personagens.Add(item);
+                }
             }
             catch (Exception ex)
             {
-                //Captará o erro para exibir em tela
-                await Application.Current.MainPage.DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "Ok");
             }
         }
     }

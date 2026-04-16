@@ -95,7 +95,5 @@ namespace AppRpgEtec.Services
             else
                 throw new Exception(serialized);
         }
-
-
     }
 }

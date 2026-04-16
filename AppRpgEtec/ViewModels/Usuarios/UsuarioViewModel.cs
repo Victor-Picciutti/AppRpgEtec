@@ -85,7 +85,7 @@ namespace AppRpgEtec.ViewModels.Usuarios
 
                     await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "ok");
 
-                    Application.Current.MainPage = new ListagemView();
+                    Application.Current.MainPage = new Views.Armas.ListagemViewArma();
                 }
             }
             catch (Exception ex)
